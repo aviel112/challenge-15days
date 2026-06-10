@@ -940,7 +940,7 @@
 
 <footer>
   © 2025 אביאל עמירה — אתגר חיטוב הקיץ | כל הזכויות שמורות
-  <br/><span id="admin-trigger" style="color:#111;user-select:none;cursor:default;font-size:.6rem">⚙</span>
+  <br/><span id="admin-trigger" style="color:#1a1a1a;user-select:none;cursor:default;font-size:.7rem;letter-spacing:.1em">admin</span>
 </footer>
 
 <!-- ADMIN PASSWORD MODAL -->
@@ -971,20 +971,38 @@
 <div id="admin-bar" style="display:none;position:fixed;top:0;left:0;right:0;z-index:9100;
   background:linear-gradient(135deg,#1a1a1a,#111);
   border-bottom:2px solid #ff3300;
-  padding:10px 20px;
-  display:none;align-items:center;gap:12px;flex-wrap:wrap">
-  <span style="font-size:.8rem;font-weight:800;color:#ff6600">⚙ מצב עריכה פעיל</span>
-  <span style="font-size:.75rem;color:#555;flex:1">לחץ על כל טקסט בדף כדי לערוך אותו</span>
+  padding:10px 16px;
+  align-items:center;gap:10px;flex-wrap:wrap">
+
+  <span style="font-size:.8rem;font-weight:800;color:#ff6600;white-space:nowrap">⚙ עריכה</span>
+
+  <!-- TIMER CONTROL -->
+  <div style="display:flex;align-items:center;gap:8px;background:#0d0d0d;border:1px solid #2a2a2a;border-radius:12px;padding:6px 12px;flex-wrap:wrap">
+    <span style="font-size:.7rem;color:#888;white-space:nowrap">⏳ טיימר — מסתיים ב:</span>
+    <input type="datetime-local" id="admin-timer-input"
+      style="background:transparent;border:none;color:#ff9966;font-family:'Heebo',sans-serif;
+             font-size:.78rem;outline:none;cursor:pointer"/>
+    <button onclick="adminSetTimer()"
+      style="background:rgba(255,51,0,.15);border:1px solid rgba(255,51,0,.3);
+             color:#ff6600;font-family:'Heebo',sans-serif;font-size:.72rem;font-weight:800;
+             padding:4px 12px;border-radius:999px;cursor:pointer;white-space:nowrap">
+      עדכן ⏱
+    </button>
+    <span id="admin-timer-msg" style="font-size:.68rem;color:#4caf50;display:none">✓ עודכן!</span>
+  </div>
+
+  <span style="font-size:.72rem;color:#444;flex:1;white-space:nowrap">לחץ על כל טקסט לעריכה</span>
+
   <button onclick="adminSave()"
     style="background:linear-gradient(135deg,#ff3300,#ff6600);color:#fff;
-           font-family:'Heebo',sans-serif;font-size:.8rem;font-weight:800;
-           padding:8px 20px;border:none;border-radius:999px;cursor:pointer">
-    💾 שמור שינויים
+           font-family:'Heebo',sans-serif;font-size:.78rem;font-weight:800;
+           padding:8px 18px;border:none;border-radius:999px;cursor:pointer;white-space:nowrap">
+    💾 שמור
   </button>
   <button onclick="adminExit()"
-    style="background:#1a1a1a;color:#888;border:1px solid #333;
-           font-family:'Heebo',sans-serif;font-size:.8rem;
-           padding:8px 16px;border-radius:999px;cursor:pointer">
+    style="background:#111;color:#666;border:1px solid #2a2a2a;
+           font-family:'Heebo',sans-serif;font-size:.78rem;
+           padding:8px 14px;border-radius:999px;cursor:pointer;white-space:nowrap">
     יציאה
   </button>
 </div>
@@ -1069,10 +1087,31 @@
     }
   }
 
+  function adminSetTimer() {
+    const input = document.getElementById('admin-timer-input');
+    if (!input.value) return;
+    const ts = new Date(input.value).getTime();
+    if (isNaN(ts)) return;
+    localStorage.setItem(KEY, ts);
+    const msg = document.getElementById('admin-timer-msg');
+    msg.style.display = 'inline';
+    setTimeout(() => msg.style.display = 'none', 2500);
+    startCountdown(); // restart display
+  }
+
   function adminEnter() {
     adminMode = true;
     document.getElementById('admin-bar').style.display = 'flex';
-    document.body.style.paddingTop = '52px';
+    document.body.style.paddingTop = '60px';
+    // populate timer input with current deadline
+    const cur = parseInt(localStorage.getItem(KEY));
+    if (cur) {
+      const d = new Date(cur);
+      // datetime-local format: YYYY-MM-DDTHH:MM
+      const pad = n => String(n).padStart(2,'0');
+      document.getElementById('admin-timer-input').value =
+        `${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}T${pad(d.getHours())}:${pad(d.getMinutes())}`;
+    }
     // make all tagged elements editable
     document.querySelectorAll('[data-ek]').forEach(el => {
       el.contentEditable = 'true';
