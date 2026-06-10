@@ -575,7 +575,7 @@
   <div class="hero-inner">
     <div class="hero-badge">
       <span class="badge-dot"></span>
-      ☀️ קיץ 2025 · אתגר רשמי
+      <span data-ek="hero-badge">☀️ קיץ 2025 · אתגר רשמי</span>
     </div>
     <p class="hero-eyebrow" data-ek="hero-eyebrow">15 ימים. שינוי אמיתי. תוצאות שנשארות.</p>
     <h1>
@@ -623,10 +623,10 @@
 
 <!-- STATS BAR -->
 <div class="stats-bar">
-  <div class="stat"><div class="stat-num">+200</div><div class="stat-lbl">נרשמו כבר</div></div>
-  <div class="stat"><div class="stat-num">15</div><div class="stat-lbl">ימים לשינוי</div></div>
-  <div class="stat"><div class="stat-num">100%</div><div class="stat-lbl">מבוסס מדע</div></div>
-  <div class="stat"><div class="stat-num">0</div><div class="stat-lbl">דיאטות רעב</div></div>
+  <div class="stat"><div class="stat-num" data-ek="stat1-num">+200</div><div class="stat-lbl" data-ek="stat1-lbl">נרשמו כבר</div></div>
+  <div class="stat"><div class="stat-num" data-ek="stat2-num">15</div><div class="stat-lbl" data-ek="stat2-lbl">ימים לשינוי</div></div>
+  <div class="stat"><div class="stat-num" data-ek="stat3-num">100%</div><div class="stat-lbl" data-ek="stat3-lbl">מבוסס מדע</div></div>
+  <div class="stat"><div class="stat-num" data-ek="stat4-num">0</div><div class="stat-lbl" data-ek="stat4-lbl">דיאטות רעב</div></div>
 </div>
 
 <!-- FOR WHOM -->
@@ -821,8 +821,8 @@
 
 <!-- COUNTDOWN -->
 <div class="cd-section">
-  <div class="cd-label">⏳ ההרשמה המוקדמת נסגרת בעוד</div>
-  <p class="cd-sub">אחרי שהמחיר יעלה — לא יחזור</p>
+  <div class="cd-label" data-ek="cd-label">⏳ ההרשמה המוקדמת נסגרת בעוד</div>
+  <p class="cd-sub" data-ek="cd-sub">אחרי שהמחיר יעלה — לא יחזור</p>
   <div class="cd-row">
     <div class="cd-box"><div class="cd-num" id="cd-d">02</div><div class="cd-unit">ימים</div></div>
     <div class="cd-colon">:</div>
@@ -837,21 +837,21 @@
 <!-- PRICE -->
 <div class="price-wrap">
   <div class="price-card">
-    <div class="price-ribbon">🔥 מחיר השקה — לנרשמים הראשונים בלבד</div>
+    <div class="price-ribbon" data-ek="price-ribbon">🔥 מחיר השקה — לנרשמים הראשונים בלבד</div>
     <div class="price-body">
-      <p class="price-eyebrow">מה כלול בהצטרפות</p>
-      <p class="price-main">מחיר מיוחד לנרשמים המוקדמים</p>
-      <ul class="price-list">
+      <p class="price-eyebrow" data-ek="price-eyebrow">מה כלול בהצטרפות</p>
+      <p class="price-main" data-ek="price-main">מחיר מיוחד לנרשמים המוקדמים</p>
+      <ul class="price-list" data-ek="price-list">
         <li>תוכנית פעולה מלאה ל-15 יום</li>
         <li>גישה לקהילת הווטסאפ הסגורה</li>
         <li>תוכנית תזונה גמישה ומותאמת</li>
         <li>כלים לשמירת תוצאות לאחר האתגר</li>
         <li>ליווי ומענה אישי לאורך כל הדרך</li>
       </ul>
-      <a href="#register" class="btn-main" style="display:inline-flex;padding:17px 40px;font-size:1rem">
+      <a href="#register" class="btn-main" data-ek="price-cta" style="display:inline-flex;padding:17px 40px;font-size:1rem">
         אני רוצה להצטרף ←
       </a>
-      <p class="price-urgency">⚠️ המחיר יעלה ברגע שהקבוצה תתמלא. אל תחכה .</p>
+      <p class="price-urgency" data-ek="price-urgency">⚠️ המחיר יעלה ברגע שהקבוצה תתמלא. אל תחכה .</p>
     </div>
   </div>
 </div>
@@ -859,12 +859,12 @@
 <!-- FAQ -->
 <section class="sec" style="padding-top:0">
   <div class="sec-inner">
-    <div class="sec-tag">שאלות נפוצות</div>
-    <h2>יש לך שאלות?</h2>
+    <div class="sec-tag" data-ek="faq-tag">שאלות נפוצות</div>
+    <h2 data-ek="faq-heading">יש לך שאלות?</h2>
     <div class="faq-list">
       <div class="faq-item">
         <button class="faq-q" onclick="toggleFaq(this)">
-          האם האתגר מתאים גם למי שמתאמן פחות מ-3 פעמים בשבוע?
+          <span data-ek="faq1-q">האם האתגר מתאים גם למי שמתאמן פחות מ-3 פעמים בשבוע?</span>
           <span class="faq-icon">+</span>
         </button>
         <div class="faq-a"><div class="faq-a-inner" data-ek="faq1-a">
@@ -873,7 +873,7 @@
       </div>
       <div class="faq-item">
         <button class="faq-q" onclick="toggleFaq(this)">
-          האם צריך מנוי למכון כדי להשתתף?
+          <span data-ek="faq2-q">האם צריך מנוי למכון כדי להשתתף?</span>
           <span class="faq-icon">+</span>
         </button>
         <div class="faq-a"><div class="faq-a-inner" data-ek="faq2-a">
@@ -882,7 +882,7 @@
       </div>
       <div class="faq-item">
         <button class="faq-q" onclick="toggleFaq(this)">
-          מה קורה אחרי 15 יום?
+          <span data-ek="faq3-q">מה קורה אחרי 15 יום?</span>
           <span class="faq-icon">+</span>
         </button>
         <div class="faq-a"><div class="faq-a-inner" data-ek="faq3-a">
@@ -891,7 +891,7 @@
       </div>
       <div class="faq-item">
         <button class="faq-q" onclick="toggleFaq(this)">
-          כמה זמן לוקח ביום?
+          <span data-ek="faq4-q">כמה זמן לוקח ביום?</span>
           <span class="faq-icon">+</span>
         </button>
         <div class="faq-a"><div class="faq-a-inner" data-ek="faq4-a">
@@ -905,7 +905,7 @@
 <!-- FORM -->
 <section class="form-section" id="register">
   <div class="form-inner">
-    <div class="sec-tag">הרשמה מוקדמת</div>
+    <div class="sec-tag" data-ek="form-tag">הרשמה מוקדמת</div>
     <h2 data-ek="form-heading">תפסו מקום עכשיו!</h2>
     <p class="form-lead" data-ek="form-lead">
       <strong>מספר המקומות מוגבל</strong> — ממלאים פרטים ואנחנו חוזרים אליכם
@@ -967,7 +967,7 @@
 </div>
 
 <footer>
-  © 2025 אביאל עמירה — אתגר חיטוב הקיץ | כל הזכויות שמורות
+  <span data-ek="footer-text">© 2025 אביאל עמירה — אתגר חיטוב הקיץ | כל הזכויות שמורות</span>
 </footer>
 
 <!-- ADMIN FAB BUTTON -->
