@@ -1013,40 +1013,50 @@
 <div id="admin-bar" style="display:none;position:fixed;top:0;left:0;right:0;z-index:9100;
   background:linear-gradient(135deg,#1a1a1a,#111);
   border-bottom:2px solid #ff3300;
-  padding:10px 16px;
-  align-items:center;gap:10px;flex-wrap:wrap">
+  padding:8px 12px;
+  align-items:center;gap:8px;flex-wrap:nowrap;overflow:hidden">
 
-  <span style="font-size:.8rem;font-weight:800;color:#ff6600;white-space:nowrap">⚙ עריכה</span>
+  <span style="font-size:.75rem;font-weight:800;color:#ff6600;white-space:nowrap">⚙ עריכה</span>
 
-  <!-- TIMER CONTROL -->
-  <div style="display:flex;align-items:center;gap:8px;background:#0d0d0d;border:1px solid #2a2a2a;border-radius:12px;padding:6px 12px;flex-wrap:wrap">
-    <span style="font-size:.7rem;color:#888;white-space:nowrap">⏳ טיימר — מסתיים ב:</span>
-    <input type="datetime-local" id="admin-timer-input"
-      style="background:transparent;border:none;color:#ff9966;font-family:'Heebo',sans-serif;
-             font-size:.78rem;outline:none;cursor:pointer"/>
-    <button onclick="adminSetTimer()"
-      style="background:rgba(255,51,0,.15);border:1px solid rgba(255,51,0,.3);
-             color:#ff6600;font-family:'Heebo',sans-serif;font-size:.72rem;font-weight:800;
-             padding:4px 12px;border-radius:999px;cursor:pointer;white-space:nowrap">
-      עדכן ⏱
-    </button>
-    <span id="admin-timer-msg" style="font-size:.68rem;color:#4caf50;display:none">✓ עודכן!</span>
-  </div>
+  <span style="font-size:.68rem;color:#333;flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">לחץ על טקסט לעריכה</span>
 
-  <span style="font-size:.72rem;color:#444;flex:1;white-space:nowrap">לחץ על כל טקסט לעריכה</span>
+  <!-- TIMER BUTTON -->
+  <button onclick="document.getElementById('admin-timer-popup').style.display=document.getElementById('admin-timer-popup').style.display==='flex'?'none':'flex'"
+    style="background:rgba(255,51,0,.12);border:1px solid rgba(255,51,0,.25);
+           color:#ff9966;font-family:'Heebo',sans-serif;font-size:.7rem;font-weight:700;
+           padding:6px 10px;border-radius:999px;cursor:pointer;white-space:nowrap;flex-shrink:0">
+    ⏳ טיימר
+  </button>
 
   <button onclick="adminSave()"
     style="background:linear-gradient(135deg,#ff3300,#ff6600);color:#fff;
-           font-family:'Heebo',sans-serif;font-size:.78rem;font-weight:800;
-           padding:8px 18px;border:none;border-radius:999px;cursor:pointer;white-space:nowrap">
+           font-family:'Heebo',sans-serif;font-size:.75rem;font-weight:800;
+           padding:6px 14px;border:none;border-radius:999px;cursor:pointer;white-space:nowrap;flex-shrink:0">
     💾 שמור
   </button>
   <button onclick="adminExit()"
     style="background:#111;color:#666;border:1px solid #2a2a2a;
-           font-family:'Heebo',sans-serif;font-size:.78rem;
-           padding:8px 14px;border-radius:999px;cursor:pointer;white-space:nowrap">
+           font-family:'Heebo',sans-serif;font-size:.75rem;
+           padding:6px 10px;border-radius:999px;cursor:pointer;white-space:nowrap;flex-shrink:0">
     יציאה
   </button>
+</div>
+
+<!-- TIMER POPUP -->
+<div id="admin-timer-popup" style="display:none;position:fixed;top:46px;right:0;left:0;z-index:9090;
+  background:#0f0f0f;border-bottom:1px solid #2a2a2a;
+  padding:12px 16px;align-items:center;gap:10px;flex-wrap:wrap;justify-content:center">
+  <span style="font-size:.72rem;color:#888;white-space:nowrap">⏳ האתגר מסתיים ב:</span>
+  <input type="datetime-local" id="admin-timer-input"
+    style="background:#1a1a1a;border:1px solid #333;border-radius:8px;color:#ff9966;
+           font-family:'Heebo',sans-serif;font-size:.8rem;outline:none;padding:6px 10px;cursor:pointer"/>
+  <button onclick="adminSetTimer()"
+    style="background:linear-gradient(135deg,#ff3300,#ff6600);border:none;
+           color:#fff;font-family:'Heebo',sans-serif;font-size:.75rem;font-weight:800;
+           padding:7px 16px;border-radius:999px;cursor:pointer;white-space:nowrap">
+    עדכן ⏱
+  </button>
+  <span id="admin-timer-msg" style="font-size:.7rem;color:#4caf50;display:none">✓ עודכן!</span>
 </div>
 
 <!-- STICKY CTA -->
