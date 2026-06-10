@@ -968,8 +968,22 @@
 
 <footer>
   © 2025 אביאל עמירה — אתגר חיטוב הקיץ | כל הזכויות שמורות
-  <br/><span id="admin-trigger" style="color:#1a1a1a;user-select:none;cursor:default;font-size:.7rem;letter-spacing:.1em">admin</span>
 </footer>
+
+<!-- ADMIN FAB BUTTON -->
+<button id="admin-trigger"
+  style="position:fixed;bottom:24px;left:20px;z-index:8900;
+         width:48px;height:48px;border-radius:50%;border:none;cursor:pointer;
+         background:rgba(20,20,20,.88);
+         backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+         box-shadow:0 2px 16px rgba(0,0,0,.6),0 0 0 1px rgba(255,255,255,.06);
+         font-size:1.3rem;
+         display:flex;align-items:center;justify-content:center;
+         transition:transform .2s,box-shadow .2s;
+         color:#888"
+  onmouseenter="this.style.transform='scale(1.12)';this.style.boxShadow='0 4px 24px rgba(255,51,0,.35),0 0 0 1px rgba(255,51,0,.25)';this.style.color='#ff6600'"
+  onmouseleave="this.style.transform='';this.style.boxShadow='0 2px 16px rgba(0,0,0,.6),0 0 0 1px rgba(255,255,255,.06)';this.style.color='#888'"
+  title="כניסת מנהל">⚙</button>
 
 <!-- ADMIN PASSWORD MODAL -->
 <div id="admin-overlay" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:9000;display:none;align-items:center;justify-content:center">
@@ -1096,17 +1110,9 @@
     });
   })();
 
-  // trigger: click ⚙ 3 times
-  let triggerCount = 0, triggerTimer;
   document.getElementById('admin-trigger').addEventListener('click', () => {
-    triggerCount++;
-    clearTimeout(triggerTimer);
-    triggerTimer = setTimeout(() => triggerCount = 0, 2000);
-    if (triggerCount >= 3) {
-      triggerCount = 0;
-      document.getElementById('admin-overlay').style.display = 'flex';
-      setTimeout(() => document.getElementById('admin-pw-input').focus(), 100);
-    }
+    document.getElementById('admin-overlay').style.display = 'flex';
+    setTimeout(() => document.getElementById('admin-pw-input').focus(), 100);
   });
 
   function adminLogin() {
