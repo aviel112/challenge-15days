@@ -586,6 +586,34 @@
       תוכנית מדויקת ל-15 יום — תזונה, אימון, חיים אמיתיים.
       <strong>בלי דיאטות רעב. בלי לוותר על שישי.</strong>
     </p>
+    <!-- HERO COUNTDOWN -->
+    <div style="margin:20px 0 24px;display:flex;flex-direction:column;align-items:center;gap:10px">
+      <div style="font-size:.6rem;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--red)">
+        ⏳ ההרשמה המוקדמת נסגרת בעוד
+      </div>
+      <div style="display:flex;align-items:center;gap:6px">
+        <div style="text-align:center">
+          <div id="hcd-d" style="font-size:2rem;font-weight:900;background:linear-gradient(135deg,#1c1c1c,#131313);border:1px solid rgba(255,51,0,.25);border-radius:10px;padding:8px 14px;min-width:54px;box-shadow:0 4px 16px rgba(0,0,0,.5)">00</div>
+          <div style="font-size:.5rem;font-weight:700;color:var(--muted);margin-top:5px;letter-spacing:.1em">ימים</div>
+        </div>
+        <div style="font-size:1.8rem;font-weight:900;color:rgba(255,51,0,.4);margin-bottom:14px">:</div>
+        <div style="text-align:center">
+          <div id="hcd-h" style="font-size:2rem;font-weight:900;background:linear-gradient(135deg,#1c1c1c,#131313);border:1px solid rgba(255,51,0,.25);border-radius:10px;padding:8px 14px;min-width:54px;box-shadow:0 4px 16px rgba(0,0,0,.5)">00</div>
+          <div style="font-size:.5rem;font-weight:700;color:var(--muted);margin-top:5px;letter-spacing:.1em">שעות</div>
+        </div>
+        <div style="font-size:1.8rem;font-weight:900;color:rgba(255,51,0,.4);margin-bottom:14px">:</div>
+        <div style="text-align:center">
+          <div id="hcd-m" style="font-size:2rem;font-weight:900;background:linear-gradient(135deg,#1c1c1c,#131313);border:1px solid rgba(255,51,0,.25);border-radius:10px;padding:8px 14px;min-width:54px;box-shadow:0 4px 16px rgba(0,0,0,.5)">00</div>
+          <div style="font-size:.5rem;font-weight:700;color:var(--muted);margin-top:5px;letter-spacing:.1em">דקות</div>
+        </div>
+        <div style="font-size:1.8rem;font-weight:900;color:rgba(255,51,0,.4);margin-bottom:14px">:</div>
+        <div style="text-align:center">
+          <div id="hcd-s" style="font-size:2rem;font-weight:900;background:linear-gradient(135deg,#1c1c1c,#131313);border:1px solid rgba(255,51,0,.25);border-radius:10px;padding:8px 14px;min-width:54px;box-shadow:0 4px 16px rgba(0,0,0,.5)">00</div>
+          <div style="font-size:.5rem;font-weight:700;color:var(--muted);margin-top:5px;letter-spacing:.1em">שניות</div>
+        </div>
+      </div>
+    </div>
+
     <div class="cta-group">
       <a href="#register" class="btn-main">אני רוצה להצטרף לאתגר ←</a>
       <p class="hero-trust">🔒 ללא התחייבות · ממלאים פרטים ואנחנו חוזרים</p>
@@ -1025,20 +1053,27 @@
   if (!localStorage.getItem(KEY)) {
     localStorage.setItem(KEY, Date.now() + 48 * 60 * 60 * 1000);
   }
-  const dl = parseInt(localStorage.getItem(KEY));
   function pad(n){ return String(n).padStart(2,'0') }
+  let _cdInterval = null;
   function tick() {
-    const diff = Math.max(0, dl - Date.now());
+    const diff = Math.max(0, parseInt(localStorage.getItem(KEY)) - Date.now());
     const d = Math.floor(diff / 86400000);
     const h = Math.floor(diff % 86400000 / 3600000);
     const m = Math.floor(diff % 3600000 / 60000);
     const s = Math.floor(diff % 60000 / 1000);
-    document.getElementById('cd-d').textContent = pad(d);
-    document.getElementById('cd-h').textContent = pad(h);
-    document.getElementById('cd-m').textContent = pad(m);
-    document.getElementById('cd-s').textContent = pad(s);
+    ['cd-d','cd-h','cd-m','cd-s'].forEach((id,i) => {
+      const el = document.getElementById(id); if(el) el.textContent = pad([d,h,m,s][i]);
+    });
+    ['hcd-d','hcd-h','hcd-m','hcd-s'].forEach((id,i) => {
+      const el = document.getElementById(id); if(el) el.textContent = pad([d,h,m,s][i]);
+    });
   }
-  tick(); setInterval(tick, 1000);
+  function startCountdown() {
+    if (_cdInterval) clearInterval(_cdInterval);
+    tick();
+    _cdInterval = setInterval(tick, 1000);
+  }
+  startCountdown();
 
   /* ── STICKY CTA ── */
   const sticky = document.getElementById('sticky-cta');
